@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #imgs {
+            height: 100px;
+            overflow: hidden;
+        }
+
+        img {
+            float: left;
+            margin-top: 50px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="imgs">
+        <img src="./youtube02.jpg" alt="">
+        <img src="./youtube08.jpg" alt="">
+        <img src="./youtube09.jpg" alt="">
+        <img src="./youtube11.jpg" alt="">
+        <img src="./youtube12.jpg" alt="">
+    </div>
+    <script src="./jquery-3.6.1.min.js"></script>
+    <script>
+        //  .hover(滑鼠移入,滑鼠移出時)
+        //  .hover(mouseenter,mouseout)
+        $('img').hover(function () {
+            $(this).stop().animate({ marginTop: 0 })
+            $(this).prev().stop().animate({ marginTop: 30 })
+            $(this).next().stop().animate({ marginTop: 30 })
+        }, function () {
+            $('img').stop().animate({ marginTop: 50 })
+        })
+    </script>
+</body>
+
+</html>

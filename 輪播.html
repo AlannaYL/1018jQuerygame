@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #gallery {
+            width: 500px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #imgs {
+            position: absolute;
+        }
+
+        img {
+            float: left;
+            width: 500px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="gallery">
+        <div id="imgs">
+            <!-- 設定float:left 讓圖片並排-->
+            <img src="./youtube02.jpg" alt="">
+            <img src="./youtube08.jpg" alt="">
+            <img src="./youtube09.jpg" alt="">
+            <img src="./youtube11.jpg" alt="">
+            <img src="./youtube12.jpg" alt="">
+        </div>
+    </div>
+    <input type="button" value="&lt;" id="btn-left">
+    <input type="button" value="&gt;" id="btn-right">
+    <script src="./jquery-3.6.1.min.js"></script>
+
+    <script>
+        // 目前的張數
+        let now = 0
+        // 全部的張數
+        const total = $('img').length
+        // 讓jQ自動計算全部圖片的總長度，如果要多一張直接加入imgs
+        $('#imgs').css('width', total * 500 + 'px')
+
+        $('#btn-right').click(function () {
+            // now       now+1     total
+            // 第一張圖的left:0
+            // 0          1         5 
+            // 1          2         5 
+            // 2          3         5 
+            // 3          4         5 
+            // 4          5         5 
+            if (now + 1 < total) {
+                now++
+                const left = now * 500 * -1
+                $('#imgs').stop(true, true).animate({ left: left - 25 + 'px' }).animate({ left: left + 'px' })
+            }
+        })
+
+        $('#btn-left').click(function () {
+            // now       now-1     
+            // 4          3    
+            // 3          2    
+            // 2          1    
+            // 1          0    
+            // 0          -1    
+            // 現在的張數小於總張數
+            if (now > 0) {
+                now--
+                const left = now * 500 * -1
+                $('#imgs').stop(true, true).animate({ left: left + 25 + 'px' }).animate({ left: left + 'px' })
+            }
+        })
+    </script>
+</body>
+
+</html>
